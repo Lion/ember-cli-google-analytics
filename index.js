@@ -8,7 +8,8 @@ var googleAnalyticsConfigDefaults = {
   cookieDomain: null,
   cookieName: null,
   cookieExpires: null,
-  displayFeatures: false
+  displayFeatures: false,
+  blacklist: []
 };
 
 function analyticsTrackingCode(config) {
