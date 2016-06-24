@@ -9,6 +9,13 @@ export default Ember.Mixin.create({
   pageviewToGA: Ember.on('didTransition', function(page, title) {
     var page = page ? page : this.get('url');
     var title = title ? title : this.get('url');
+    var blacklist = Ember.get(ENV, 'googleAnalytics.blacklist');
+
+    if (Ember.isPresent(blacklist)) {
+      if (blacklist.contains(page)) {
+        return;
+      }
+    }
 
     if (Ember.get(ENV, 'googleAnalytics.webPropertyId') != null) {
       var trackerType = Ember.getWithDefault(ENV, 'googleAnalytics.tracker', 'analytics.js');
